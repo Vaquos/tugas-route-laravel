@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,6 +18,20 @@ Route::put('update/{id}', function ($id) {
 Route::delete('delete/{id}', function ($id) {
     return 'delete data for id: ' . $id;
 });
+
+Route::post('/mahasiswa', [MahasiswaController::class, 'store']);
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+// Route::get('/listmahasiswa', function () {
+//     $mahasiswa = [
+//         'Furqon',
+//         'Aldio',
+//         'Agel',
+//         'Erland',
+//     ];
+//     return view('akademik.mahasiswa', ['mahasiswa' => $mahasiswa]);
+// });
+
 
 Route::get('mahasiswa/ti/furqon', function () {
     return view('mahasiswa', ['title' => 'Mahasiswa']);
@@ -57,6 +72,80 @@ Route::prefix('login')->group(function () {
     route::get('admin', function () {
         return view('login', ['user' => 'admin']);
     });
+});
+
+Route::get('/listmahasiswa', function () {
+    $mhs1 = 'Furqon';
+    $mhs2 = 'Dio';
+    $mhs3 = 'Erland';
+
+    return view('akademik.mahasiswalist', compact('mhs1', 'mhs2', 'mhs3'));
+});
+
+Route::get('/nilaimahasiswa', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = '999999';
+
+    return view('akademik.nilaimahasiswa', compact('nama', 'nim', 'total_nilai'));
+});
+Route::get('/nilaimahasiswaswitch', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = '99';
+
+    return view('akademik.nilaimahasiswaswitch', compact('nama', 'nim', 'total_nilai'));
+});
+Route::get('/nilaimahasiswaforloop', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = '99';
+
+    return view('akademik.nilaimahasiswaforloop', compact('nama', 'nim', 'total_nilai'));
+});
+
+Route::get('/nilaimahasiswawhile', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = '3';
+
+    return view('akademik.nilaimahasiswawhile', compact('nama', 'nim', 'total_nilai'));
+});
+Route::get('/nilaimahasiswadowhile', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = '3';
+
+    return view('akademik.nilaimahasiswadowhile', compact('nama', 'nim', 'total_nilai'));
+});
+
+Route::get('/nilaimahasiswaforeach', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = [23, 50, 80, 90];
+
+    return view('akademik.nilaimahasiswaforeach', compact('nama', 'nim', 'total_nilai'));
+});
+Route::get('/nilaimahasiswaforelse', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = [23, 50, 80, 90];
+
+    return view('akademik.nilaimahasiswaforelse', compact('nama', 'nim', 'total_nilai'));
+});
+Route::get('/nilaimahasiswacontinuebreak', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = [23, 50, 80, 90];
+
+    return view('akademik.nilaimahasiswacontinuebreak', compact('nama', 'nim', 'total_nilai'));
+});
+Route::get('/nilaimahasiswacontinuebreak2', function () {
+    $nama = 'Furqon';
+    $nim = '2311082018';
+    $total_nilai = [23, 50, 80, 90];
+
+    return view('akademik.nilaimahasiswacontinuebreak2', compact('nama', 'nim', 'total_nilai'));
 });
 
 Route::fallback(function () {
