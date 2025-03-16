@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -146,6 +147,21 @@ Route::get('/nilaimahasiswacontinuebreak2', function () {
     $total_nilai = [23, 50, 80, 90];
 
     return view('akademik.nilaimahasiswacontinuebreak2', compact('nama', 'nim', 'total_nilai'));
+});
+
+Route::get('/mahasiswati', function () {
+    $arrmhs = ['furqon', 'dio', 'erland'];
+    return view('akademik/mahasiswapnp', ['mhs' => $arrmhs]);
+});
+
+Route::get('/dosenti', function () {
+    $arrdsn = ['dosen web framework', 'dosen microservice', 'dosen mobile programming', 'dosen web programming', 'dosen multimedia', 'dosen IOT'];
+    return view('akademik/dosenpnp', ['dsn' => $arrdsn]);
+});
+
+Route::get('/prodi', function () {
+    // $arrdsn = ['dosen web framework', 'dosen microservice', 'dosen mobile programming', 'dosen web programming', 'dosen multimedia', 'dosen IOT'];
+    return view('akademik/prodipnp');
 });
 
 Route::fallback(function () {
