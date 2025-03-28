@@ -196,4 +196,4 @@ Route::get('teknisi/create', [TeknisiController::class, 'create'])->name('teknis
 Route::post('teknisi', [TeknisiController::class, 'store'])->name('teknisi.store');
 Route::get('teknisi/{id}/edit', [TeknisiController::class, 'edit'])->name('teknisi.edit');
 Route::put('teknisi/{id}', [TeknisiController::class, 'update'])->name('teknisi.update');
-Route::delete('teknisi/{id}', [DosenController::class, 'destroy'])->name('teknisi.destroy');
+Route::delete('teknisi/{id}', [TeknisiController::class, 'destroy'])->name('teknisi.destroy');

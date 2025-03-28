@@ -31,7 +31,7 @@
                     <td>{{ $teknisi->email }}</td>
                     <td>{{ $teknisi->nohp }}</td>
                     <td>{{ $teknisi->alamat }}</td>
-                    <td>{{ $teknisi->keahlian }}</td>
+                    <td>{{ $teknisi->bidang }}</td>
                     <td>
                         <a class="btn btn-warning" href="{{ route('teknisi.edit', $teknisi->id) }}">Edit</a>
                         <form action="{{ route('teknisi.destroy', $teknisi->id) }}" method="POST">

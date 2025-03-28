@@ -16,10 +16,13 @@
                         <a class="nav-link" href="/mahasiswa">Mahasiswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/dosen">Dosen</a>
+                        <a class="nav-link" href="{{ route('dosens.index') }}">Dosen</a>
                         </l>
                     <li class="nav-item">
                         <a class="nav-link" href="/prodi">Prodi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('teknisi.index') }}">Teknisi</a>
                     </li>
                 </ul>
             </div>

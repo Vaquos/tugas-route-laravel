@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class TeknisiController extends Controller
 {
@@ -11,7 +13,8 @@ class TeknisiController extends Controller
      */
     public function index()
     {
-        //
+        $teknisis = DB::table('teknisis')->get();
+        return view('teknisis.index', compact('teknisis'));
     }
 
     /**
@@ -19,7 +22,7 @@ class TeknisiController extends Controller
      */
     public function create()
     {
-        //
+        return view('teknisis.create',); 
     }
 
     /**
@@ -27,7 +30,27 @@ class TeknisiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'nohp' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'bidang' => 'required|string|max:255',
+        ]);
+
+        DB::table('teknisis')->insert([
+            'name'  => $request->name,
+            'nik'  => $request->nik,
+            'email'  => $request->email,
+            'nohp'  => $request->nohp,
+            'alamat'  => $request->alamat,
+            'bidang'  => $request->bidang,
+            'created_at'  => now(),
+            'updated_at'  => now(),
+        ]);
+
+        return redirect()->route('teknisi.index')->with('success', 'Data Teknisi Berhasil ditambahkan');
     }
 
     /**
@@ -43,7 +66,8 @@ class TeknisiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $teknisi = DB::table('teknisis')->find($id);
+        return view('teknisis.edit', compact('teknisi'));
     }
 
     /**
@@ -51,7 +75,27 @@ class TeknisiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return "menampilkan user dengan id" . $id;
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'nohp' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'bidang' => 'required|string|max:255',
+        ]);
+
+        DB::table('teknisis')->where('id', $id)->update([
+            'name'  => $request->name,
+            'nik'  => $request->nik,
+            'email'  => $request->email,
+            'nohp'  => $request->nohp,
+            'alamat'  => $request->alamat,
+            'bidang'  => $request->bidang,
+            'created_at'  => now(),
+            'updated_at'  => now(),
+        ]);
+
+        return redirect()->route('teknisi.index')->with('success', 'Data Teknisi Berhasil diupdate');
     }
 
     /**
@@ -59,6 +103,7 @@ class TeknisiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('teknisis')->where('id', $id)->delete();
+        return redirect()->route('teknisi.index')->with('success', 'Data Teknisi Berhasil dihapus');
     }
 }
