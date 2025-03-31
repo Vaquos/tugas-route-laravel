@@ -3,12 +3,14 @@
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Dosen\DosenpnpController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\TeknisiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::post('submit', function () {
     return 'form submitted!!!';
@@ -22,36 +24,36 @@ Route::delete('delete/{id}', function ($id) {
     return 'delete data for id: ' . $id;
 });
 
-Route::post('/mahasiswa', [MahasiswaController::class, 'store']);
+// Route::post('/mahasiswa', [MahasiswaController::class, 'store']);
 
-Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
-// Route::get('/listmahasiswa', function () {
-//     $mahasiswa = [
-//         'Furqon',
-//         'Aldio',
-//         'Agel',
-//         'Erland',
-//     ];
-//     return view('akademik.mahasiswa', ['mahasiswa' => $mahasiswa]);
+// Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+// // Route::get('/listmahasiswa', function () {
+// //     $mahasiswa = [
+// //         'Furqon',
+// //         'Aldio',
+// //         'Agel',
+// //         'Erland',
+// //     ];
+// //     return view('akademik.mahasiswa', ['mahasiswa' => $mahasiswa]);
+// // });
+
+
+// Route::get('mahasiswa/ti/furqon', function () {
+//     return view('mahasiswa', ['title' => 'Mahasiswa']);
 // });
 
-
-Route::get('mahasiswa/ti/furqon', function () {
-    return view('mahasiswa', ['title' => 'Mahasiswa']);
-});
-
-Route::get('mahasiswa/{nama}', function ($nama) {
-    return view('nama-mahasiswa', ['title' => $nama, 'nama' => $nama]);
-});
+// Route::get('mahasiswa/{nama}', function ($nama) {
+//     return view('nama-mahasiswa', ['title' => $nama, 'nama' => $nama]);
+// });
 
 
 Route::get('hitungusia/{nama}/{tahunlahir}', function ($nama, $tahun_lahir) {
     $usia = date('Y') - $tahun_lahir;
     return view('hitung-usia', ['title' => 'Hitung Usia', 'nama' => $nama, 'usia' => $usia]);
 });
-Route::get('mahasiswa/{nama?}', function ($nama = 'tidak ada') {
-    return view('nama-mahasiswa', ['title' => $nama, 'nama' => $nama]);
-});
+// Route::get('mahasiswa/{nama?}', function ($nama = 'tidak ada') {
+//     return view('nama-mahasiswa', ['title' => $nama, 'nama' => $nama]);
+// });
 
 
 Route::get('hitungusia/{nama?}/{tahunlahir?}', function ($nama = "tidak ada", $tahun_lahir = "2025") {
@@ -161,10 +163,10 @@ Route::get('/dosenti', function () {
     return view('akademik/dosenpnp', ['dsn' => $arrdsn]);
 });
 
-Route::get('/prodi', function () {
-    // $arrdsn = ['dosen web framework', 'dosen microservice', 'dosen mobile programming', 'dosen web programming', 'dosen multimedia', 'dosen IOT'];
-    return view('akademik/prodipnp');
-});
+// Route::get('/prodi', function () {
+//     // $arrdsn = ['dosen web framework', 'dosen microservice', 'dosen mobile programming', 'dosen web programming', 'dosen multimedia', 'dosen IOT'];
+//     return view('akademik/prodipnp');
+// });
 
 Route::get("/pnp/{jurusan}/{prodi}", function ($jurusan, $prodi) {
     $data = [$jurusan, $prodi];
@@ -197,3 +199,17 @@ Route::post('teknisi', [TeknisiController::class, 'store'])->name('teknisi.store
 Route::get('teknisi/{id}/edit', [TeknisiController::class, 'edit'])->name('teknisi.edit');
 Route::put('teknisi/{id}', [TeknisiController::class, 'update'])->name('teknisi.update');
 Route::delete('teknisi/{id}', [TeknisiController::class, 'destroy'])->name('teknisi.destroy');
+
+Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+Route::get('mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+Route::post('mahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
+Route::get('mahasiswa/{id}/edit', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
+Route::put('mahasiswa/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
+Route::delete('mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+
+Route::get('prodi', [ProdiController::class, 'index'])->name('prodi.index');
+Route::get('prodi/create', [ProdiController::class, 'create'])->name('prodi.create');
+Route::post('prodi', [ProdiController::class, 'store'])->name('prodi.store');
+Route::get('prodi/{id}/edit', [ProdiController::class, 'edit'])->name('prodi.edit');
+Route::put('prodi/{id}', [ProdiController::class, 'update'])->name('prodi.update');
+Route::delete('prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');

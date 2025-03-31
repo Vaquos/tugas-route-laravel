@@ -84,7 +84,7 @@
 
                         <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
                     </form>
-                    <a href="{{ route('dosens.index') }}">Kembali ke Daftar Teknisi</a>
+                    <a href="{{ route('teknisis.index') }}">Kembali ke Daftar Teknisi</a>
                 </div>
             </div>
         </div>

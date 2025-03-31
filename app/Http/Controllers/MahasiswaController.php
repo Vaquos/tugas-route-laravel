@@ -55,14 +55,14 @@ class MahasiswaController extends Controller
 
 
 
-    public function update()
-    {
-        $query = DB::update(
-            "UPDATE mahasiswas SET jurusan = 'KESEHATAN MASYARAKAT' where name=?",
-            ['Furqon']
-        );
-        return "Berhasil UPDATE mahasiswa";
-    }
+    // public function update()
+    // {
+    //     $query = DB::update(
+    //         "UPDATE mahasiswas SET jurusan = 'KESEHATAN MASYARAKAT' where name=?",
+    //         ['Furqon']
+    //     );
+    //     return "Berhasil UPDATE mahasiswa";
+    // }
 
     public function select()
     {
@@ -96,13 +96,6 @@ class MahasiswaController extends Controller
         return "berhasil menghapus table mahasiswa";
     }
 
-
-
-
-
-
-
-
     /**
      * Display a listing of the resource.
      */
@@ -114,11 +107,10 @@ class MahasiswaController extends Controller
         });
 
         // mengambil data mahasiswa
-        $data = Mahasiswa::all();
+        $mahasiswas = Mahasiswa::all();
         // dd($data);
 
-        dump($data);
-        return view("mahasiswa.index", compact("data"));
+        return view("mahasiswa.index", compact("mahasiswas"));
     }
 
     /**
@@ -126,7 +118,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view("mahasiswa.create");
     }
 
     /**
@@ -134,7 +126,28 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nobp' => 'required|numeric',
+            'jurusan'=> 'required|string|max:255',
+            'prodi'=> 'required|string|max:255',
+            'tgllahir'=> 'required|date',
+            'email'=> 'required|email',
+            'nohp'=> 'required|string|max:255',
+        ]);
+
+        DB::table('mahasiswas')->insert([
+            'name' => $request->name,
+            'nobp' => $request->nobp,
+            'jurusan'=> $request->jurusan,
+            'prodi'=> $request->prodi,
+            'tgllahir'=> $request->tgllahir,
+            'email'=> $request->email,
+            'nohp'=> $request->nohp,
+        ]);
+
+        return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
+        
     }
 
     /**
@@ -150,19 +163,45 @@ class MahasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $mahasiswa = DB::table('mahasiswas')->find($id);
+        return view('mahasiswa.edit', compact('mahasiswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
 
+    public function update(Request $request, string $id){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nobp' => 'required|numeric',
+            'jurusan'=> 'required|string|max:255',
+            'prodi'=> 'required|string|max:255',
+            'tgllahir'=> 'required|date',
+            'email'=> 'required|email',
+            'nohp'=> 'required|string|max:255',
+        ]);
+
+        DB::table('mahasiswas')->where('id', $id)->update([
+            'name' => $request->name,
+            'nobp' => $request->nobp,
+            'jurusan'=> $request->jurusan,
+            'prodi'=> $request->prodi,
+            'tgllahir'=> $request->tgllahir,
+            'email'=> $request->email,
+            'nohp'=> $request->nohp,
+        ]);
+
+        return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Diupdate');
+        
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('mahasiswas')->where('id', $id)->delete();
+        return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil dihapus');
     }
 }

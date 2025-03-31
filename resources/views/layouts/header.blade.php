@@ -10,16 +10,16 @@
                 <ul
                     class="navbar-nav me-auto mb-2 mb-md-0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">Home</a>
+                        <a class="nav-link" href="{{ route('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/mahasiswa">Mahasiswa</a>
+                        <a class="nav-link" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('dosens.index') }}">Dosen</a>
-                        </l>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/prodi">Prodi</a>
+                        <a class="nav-link" href="{{ route('prodi.index') }}">Prodi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('teknisi.index') }}">Teknisi</a>
