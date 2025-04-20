@@ -43,4 +43,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pagination-container">
+        {{ $dosens->links() }}
+    </div>
 @endsection

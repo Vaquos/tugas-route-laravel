@@ -45,4 +45,7 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pagination-container">
+        {{ $mahasiswas->links() }}
+    </div>
 @endsection

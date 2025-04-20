@@ -13,7 +13,7 @@ class DosenpnpController extends Controller
      */
     public function index()
     {
-        $dosens = DB::table('dosens')->get();
+        $dosens = DB::table('dosens')->paginate(10);
         return view('dosens.index', compact('dosens'));
     }
 
@@ -56,10 +56,7 @@ class DosenpnpController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -97,7 +94,7 @@ class DosenpnpController extends Controller
 
         return redirect()->route('dosens.index')->with('success', 'Data Dosen Berhasil diupdate');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */

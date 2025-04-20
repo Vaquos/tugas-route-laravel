@@ -107,7 +107,7 @@ class MahasiswaController extends Controller
         });
 
         // mengambil data mahasiswa
-        $mahasiswas = Mahasiswa::all();
+        $mahasiswas = Mahasiswa::paginate(5);
         // dd($data);
 
         return view("mahasiswa.index", compact("mahasiswas"));
@@ -129,25 +129,24 @@ class MahasiswaController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nobp' => 'required|numeric',
-            'jurusan'=> 'required|string|max:255',
-            'prodi'=> 'required|string|max:255',
-            'tgllahir'=> 'required|date',
-            'email'=> 'required|email',
-            'nohp'=> 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'prodi' => 'required|string|max:255',
+            'tgllahir' => 'required|date',
+            'email' => 'required|email',
+            'nohp' => 'required|string|max:255',
         ]);
 
         DB::table('mahasiswas')->insert([
             'name' => $request->name,
             'nobp' => $request->nobp,
-            'jurusan'=> $request->jurusan,
-            'prodi'=> $request->prodi,
-            'tgllahir'=> $request->tgllahir,
-            'email'=> $request->email,
-            'nohp'=> $request->nohp,
+            'jurusan' => $request->jurusan,
+            'prodi' => $request->prodi,
+            'tgllahir' => $request->tgllahir,
+            'email' => $request->email,
+            'nohp' => $request->nohp,
         ]);
 
         return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Ditambahkan');
-        
     }
 
     /**
@@ -171,29 +170,29 @@ class MahasiswaController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, string $id){
+    public function update(Request $request, string $id)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'nobp' => 'required|numeric',
-            'jurusan'=> 'required|string|max:255',
-            'prodi'=> 'required|string|max:255',
-            'tgllahir'=> 'required|date',
-            'email'=> 'required|email',
-            'nohp'=> 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'prodi' => 'required|string|max:255',
+            'tgllahir' => 'required|date',
+            'email' => 'required|email',
+            'nohp' => 'required|string|max:255',
         ]);
 
         DB::table('mahasiswas')->where('id', $id)->update([
             'name' => $request->name,
             'nobp' => $request->nobp,
-            'jurusan'=> $request->jurusan,
-            'prodi'=> $request->prodi,
-            'tgllahir'=> $request->tgllahir,
-            'email'=> $request->email,
-            'nohp'=> $request->nohp,
+            'jurusan' => $request->jurusan,
+            'prodi' => $request->prodi,
+            'tgllahir' => $request->tgllahir,
+            'email' => $request->email,
+            'nohp' => $request->nohp,
         ]);
 
         return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Berhasil Diupdate');
-        
     }
 
     /**

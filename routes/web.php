@@ -9,7 +9,7 @@ use App\Http\Controllers\TeknisiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('mahasiswa.index');
 })->name('index');
 
 Route::post('submit', function () {
@@ -213,3 +213,27 @@ Route::post('prodi', [ProdiController::class, 'store'])->name('prodi.store');
 Route::get('prodi/{id}/edit', [ProdiController::class, 'edit'])->name('prodi.edit');
 Route::put('prodi/{id}', [ProdiController::class, 'update'])->name('prodi.update');
 Route::delete('prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.destroy');
+
+
+Route::get('cek-objek', [DosenController::class, 'cekObjek']);
+Route::get('insert', [DosenController::class, 'insert']);
+Route::get('mass-assignment', [DosenController::class, 'massAssignment']);
+Route::get('updatedosen', [DosenController::class, 'update']);
+Route::get('updatedosen-where', [DosenController::class, 'updateWhere']);
+Route::get('mass-update', [DosenController::class, 'massUpdate']);
+Route::get('deletedosen', [DosenController::class, 'delete']);
+Route::get('destroydosen', [DosenController::class, 'destroy']);
+Route::get('mass-delete', [DosenController::class, 'massDelete']);
+Route::get('all', [DosenController::class, 'all']);
+Route::get('all-view', [DosenController::class, 'allView']);
+Route::get('get-where', [DosenController::class, 'getWhere']);
+Route::get('test-where', [DosenController::class, 'testWhere']);
+Route::get('first', [DosenController::class, 'first']);
+Route::get('find', [DosenController::class, 'find']);
+Route::get('latest', [DosenController::class, 'latest']);
+Route::get('limit', [DosenController::class, 'limit']);
+Route::get('skip-take', [DosenController::class, 'skipTake']);
+Route::get('soft-delete', [DosenController::class, 'softDelete']);
+Route::get('with-trashed', [DosenController::class, 'withTrashed']);
+Route::get('restore', [DosenController::class, 'restore']);
+Route::get('force-delete', [DosenController::class, 'forceDelete']);

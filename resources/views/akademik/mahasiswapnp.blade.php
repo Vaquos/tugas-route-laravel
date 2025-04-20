@@ -24,4 +24,7 @@ Daftar Mahasiswa
         </tr>
         @endforeach
 </table>
+<div class="pagination-container">
+    {{ $ }}
+</div>
 @endsection
